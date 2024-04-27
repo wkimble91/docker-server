@@ -15,7 +15,7 @@
 <h2><a href="https://avatars.githubusercontent.com/u/8361145?s=200&v=4"><img
             src="https://avatars.githubusercontent.com/u/8361145?s=200&v=4"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Pihole" /></a><a href="https://github.com/AdguardTeam/AdGuardHome"> AdGuard Home </a> | <a
+            title="Pihole" /></a><a href="https://github.com/AdguardTeam/AdGuardHome"> Adguard Home </a> | <a
         href="https://nlnetlabs.nl/static/logos/Unbound/Mark_Unbound_FC_Shaded.svg"><img
             src="https://nlnetlabs.nl/static/logos/Unbound/Mark_Unbound_FC_Shaded.svg"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: 40px; border-radius: 50%;"
@@ -55,9 +55,9 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/authelia/docker-compose.yaml)**
 
-**[configuration](https://github.com/wkimble91/docker-server/blob/main/authelia/configuration.yaml)**
+**[configuration](https://github.com/wkimble91/docker-server/blob/main/authelia/example/configuration.yaml)**
 
-**[user_database](https://github.com/wkimble91/docker-server/blob/main/authelia/users_database.yaml)**
+**[user_database](https://github.com/wkimble91/docker-server/blob/main/authelia/example/users_database.yaml)**
 
 <br>
 
@@ -88,25 +88,24 @@
             title="Homepage" /></a> <a href="https://github.com/benphelps/homepage"> Homepage </a></h2>
 
 <p>A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations
-    for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via
-    docker labels).</p>
+    for more than 25 services and translations for over 15 languages. Configured via YAML files.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/homepage/docker-compose.yaml)**
 
-**[dockerconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/docker.yaml)**
+**[dockerconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/example/docker.yaml)**
 
-**[servicesconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/services.yaml)**
+**[servicesconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/example/services.yaml)**
 
-**[settingsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/settings.yaml)**
+**[settingsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/example/settings.yaml)**
 
-**[widgetsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/widgets.yaml)**
+**[widgetsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/example/widgets.yaml)**
 
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/immich-app/immich/main/design/immich-logo.svg"><img
             src="https://raw.githubusercontent.com/immich-app/immich/main/design/immich-logo.svg"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Immich" /></a> <a href="https://github.com/immich-app/immich"> immich </a></h2>
+            title="Immich" /></a> <a href="https://github.com/immich-app/immich"> Immich </a></h2>
 
 <p>A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations
     for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via
@@ -119,7 +118,7 @@
 <h2><a href="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/jellyfin.png"><img
             src="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/jellyfin.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Jellyfin" /></a> <a href="https://github.com/jellyfin/jellyfin"> jellyfin </a></h2>
+            title="Jellyfin" /></a> <a href="https://github.com/jellyfin/jellyfin"> Jellyfin </a></h2>
 
 <p>Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an
     alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via
@@ -132,22 +131,27 @@
 
 <br>
 
-<h2><a href="https://avatars.githubusercontent.com/u/19211038?s=200&v=4"><img
-            src="https://avatars.githubusercontent.com/u/19211038?s=200&v=4"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto; border-radius: 50%;"
-            title="Nextcloud" /></a> <a href="https://github.com/nextcloud/server"> nextcloud </a></h2>
+<h2><a href="https://raw.githubusercontent.com/laurent22/joplin/dev/Assets/LinuxIcons/256x256.png"><img src="https://raw.githubusercontent.com/laurent22/joplin/dev/Assets/LinuxIcons/256x256.png" style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;" title="Joplin Server" /></a> <a href="https://github.com/laurent22/joplin/tree/dev/packages/server"> Joplin Server </a>
+</h2>
 
-<p>Nextcloud is a powerful online office suite with collaborative editing. It supports all major document, spreadsheet
-    and presentation file formats and works in all modern browsers. Also used to sync bookmarks, contacts, tasks and
-    more.</p>
+<p>Joplin is a free, open source note taking and to-do application, which can handle a large number of notes organised into notebooks. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in Markdown.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/nextcloud/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/joplin/docker-compose.yaml)**
+
+<br>
+
+<h2><a href="https://avatars.githubusercontent.com/u/26692192?s=200&v=4"><img src="https://avatars.githubusercontent.com/u/26692192?s=200&v=4" style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;" title="Navidrome" /></a> <a href="https://github.com/navidrome/navidrome"> Navidrome </a>
+</h2>
+
+<p>Navidrome is an open source web-based music collection server and streamer. It gives you freedom to listen to your music collection from any browser or mobile device. It's like your personal Spotify!</p>
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/navidrome/docker-compose.yaml)**
 
 <br>
 
 <h2><a href="https://docs.paperless-ngx.com/assets/logo.svg"><img src="https://docs.paperless-ngx.com/assets/logo.svg"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Paperless-ngx" /></a> <a href="https://github.com/paperless-ngx/paperless-ngx"> paperless-ngx </a>
+            title="Paperless-ngx" /></a> <a href="https://github.com/paperless-ngx/paperless-ngx"> Paperless-ngx </a>
 </h2>
 
 <p>Paperless-ngx is a document management system that transforms your physical documents into a searchable online
@@ -157,65 +161,32 @@
 
 <br>
 
-<h2><a href="https://avatars.githubusercontent.com/u/22225832"><img
-            src="https://avatars.githubusercontent.com/u/22225832"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Portainer" /></a> <a href="https://github.com/portainer/portainer"> portainer </a></h2>
-
-<p>Portainer Community Edition is a lightweight service delivery platform for containerized applications that can be
-    used to manage Docker, Swarm, Kubernetes and ACI environments. It is designed to be as simple to deploy as it is to
-    use. The application allows you to manage all your orchestrator resources (containers, images, volumes, networks and
-    more) through a "smart" GUI and/or an extensive API.</p>
-
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/portainer/docker-compose.yaml)**
-
-<br>
-
 <h2><a href="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/qbittorrent.png"><img
             src="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/qbittorrent.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="qbittorrent" /></a> <a href="https://github.com/qbittorrent/qBittorrent"> qbittorrent </a></h2>
+            title="qbittorrent" /></a> <a href="https://github.com/qbittorrent/qBittorrent"> qBittorrent </a></h2>
 
 <p>qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called
     libtorrent-rasterbar) by Arvid Norberg.</p>
 
-<p>It aims to be a good alternative to all other bittorrent clients out there. qBittorrent is fast, stable and provides
-    unicode support as well as many features.</p>
+<p>It aims to be a good alternative to all other bittorrent clients out there. qBittorrent is fast, stable and provides unicode support as well as many features.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/qbittorrent/docker-compose.yaml)**
 
 <br>
 
-<h2><a href="https://avatars.githubusercontent.com/u/41993376"><img
-            src="https://avatars.githubusercontent.com/u/41993376"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Shiori" /></a> <a href="https://github.com/go-shiori/shiori"> shiori </a></h2>
+<h2><a href="https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/speedtest-tracker-logo.png"><img src="https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/speedtest-tracker-logo.png" style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;" title="speedtest tracker" /></a> <a href="https://github.com/alexjustesen/speedtest-tracker"> Speedtest Tracker </a></h2>
 
-<p>Shiori is a simple bookmarks manager written in the Go language. Intended as a simple clone of Pocket. You can use it
-    as a command line application or as a web application. This application is distributed as a single binary, which
-    means it can be installed and used easily.</p>
+<p>Speedtest-tracker is a self-hosted internet performance tracking application that runs speedtest checks against Ookla's Speedtest service.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/shiori/docker-compose.yaml)**
-
-<br>
-
-<h2><a href="https://avatars.githubusercontent.com/u/7628018?s=200&v=4"><img
-            src="https://avatars.githubusercontent.com/u/7628018?s=200&v=4"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Tandoor" /></a> <a href="https://github.com/syncthing/syncthing"> syncthing </a></h2>
-
-<p>This application is meant for people with a collection of recipes they want to share with family and friends or
-    simply store them in a nicely organized way. A basic permission system exists but this application is not meant to
-    be run as a public page.</p>
-
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/syncthing/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/speedtest/docker-compose.yaml)**
 
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tandoorrecipes.png"><img
             src="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tandoorrecipes.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Tandoor" /></a> <a href="https://github.com/TandoorRecipes/recipes"> tandoor </a></h2>
+            title="Tandoor" /></a> <a href="https://github.com/TandoorRecipes/recipes"> Tandoor </a></h2>
 
 <p>This application is meant for people with a collection of recipes they want to share with family and friends or
     simply store them in a nicely organized way. A basic permission system exists but this application is not meant to
@@ -228,7 +199,7 @@
 <h2><a href="https://raw.githubusercontent.com/traefik/traefik/master/docs/content/assets/img/traefik.logo.png"><img
             src="https://raw.githubusercontent.com/traefik/traefik/master/docs/content/assets/img/traefik.logo.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Traefik" /></a> <a href="https://github.com/traefik/traefik"> traefik </a></h2>
+            title="Traefik" /></a> <a href="https://github.com/traefik/traefik"> Traefik </a></h2>
 
 <p>Traefik (pronounced traffic) is a modern HTTP reverse proxy and load balancer that makes deploying microservices
     easy. Traefik integrates with your existing infrastructure components (Docker, Swarm mode, Kubernetes, Consul, Etcd,
@@ -243,14 +214,14 @@
 
 <br>
 
-<h2><a href="https://cdn.lo4d.com/t/icon/128/trilium-notes.png"><img
-            src="https://cdn.lo4d.com/t/icon/128/trilium-notes.png"
+<h2><a href="https://avatars.githubusercontent.com/u/81266068?s=200&v=4"><img
+            src="https://avatars.githubusercontent.com/u/81266068?s=200&v=4"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Trilium" /></a> <a href="https://github.com/zadam/trilium"> trilium </a></h2>
+            title="unmanic" /></a> <a href="https://github.com/Unmanic/unmanic"> Unmanic </a></h2>
 
-<p>Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.</p>
+<p>Unmanic is a simple tool for optimising your file library. You can use it to convert your files into a single, uniform format, manage file movements based on timestamps, or execute custom commands against a file based on its file size.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/trilium/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/unmanic/docker-compose.yaml)**
 
 <br>
 
@@ -258,7 +229,7 @@
         href="https://raw.githubusercontent.com/louislam/uptime-kuma/742ad083e51cca7b912f4712c0154be968b933fb/public/icon.svg"><img
             src="https://raw.githubusercontent.com/louislam/uptime-kuma/742ad083e51cca7b912f4712c0154be968b933fb/public/icon.svg"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Uptime-Kuma" /></a> <a href="https://github.com/louislam/uptime-kuma"> uptime-kuma </a></h2>
+            title="Uptime-Kuma" /></a> <a href="https://github.com/louislam/uptime-kuma"> Uptime Kuma </a></h2>
 
 <p>A self-hosted uptime monitoring tool for HTTP(s), TCP, HTTP(s) Keyword, Ping, DNS Record, and Push requests.</p>
 
@@ -269,13 +240,35 @@
 <h2><a href="https://www.androidacy.com/wp-content/uploads/vaultwarden-icon-1080x1080.png"><img
             src="https://www.androidacy.com/wp-content/uploads/vaultwarden-icon-1080x1080.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Watchtower" /></a> <a href="https://github.com/dani-garcia/vaultwarden"> vaultwarden </a></h2>
+            title="Watchtower" /></a> <a href="https://github.com/dani-garcia/vaultwarden"> Vaultwarden </a></h2>
 
 <p>Alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden
     clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.
 </p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/vaultwarden/docker-compose.yaml)**
+
+<br>
+
+<h2><a href="https://raw.githubusercontent.com/ellite/Wallos/main/images/siteicons/blue/walloswhite.png"><img
+            src="https://raw.githubusercontent.com/ellite/Wallos/main/images/siteicons/blue/walloswhite.png"
+            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
+            title="wallos" /></a> <a href="https://github.com/ellite/Wallos"> Wallos </a></h2>
+
+<p>Wallos is a powerful, open-source, and self-hostable web application designed to empower you in managing your finances with ease. Say goodbye to complicated spreadsheets and expensive financial software. Wallos simplifies the process of tracking expenses and helps you gain better control over your financial life.</p>
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/wallos/docker-compose.yaml)**
+
+<br>
+
+<h2><a href="https://raw.githubusercontent.com/Flomp/wanderer/main/web/static/svgs/logo_text_two_line_dark.svg"><img
+            src="https://raw.githubusercontent.com/Flomp/wanderer/main/web/static/svgs/logo_text_two_line_dark.svg"
+            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
+            title="wanderer" /></a> <a href="https://github.com/Flomp/wanderer"> Wanderer </a></h2>
+
+<p>Wanderer is a self-hosted trail database. You can upload your recorded tracks and add various metadata to create an easily searchable catalogue.</p>
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/wanderer/docker-compose.yaml)**
 
 <br>
 
