@@ -1,0 +1,35 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/settings
+title: Home
+background:
+  image: /images/waterfall.jpg
+  brightness: 75 # 0, 50, 75, 100
+  opacity: 40 # 0-100
+cardBlur: md
+iconStyle: theme
+theme: dark
+color: neutral
+statusStyle: "dot"
+headerStyle: clean
+target: _blank
+hideVersion: true
+hideErrors: true
+language: jpn
+useEqualHeights: true
+layout:
+  Streaming:
+    #icon: mdi-home-assistant
+    style: row
+    columns: 2
+    header: false
+  Media:
+    #icon: mdi-home-assistant
+    style: row
+    columns: 3
+    header: false
+  Static:
+    #icon: mdi-home-assistant
+    style: row
+    columns: 5
+    header: false

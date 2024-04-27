@@ -1,0 +1,40 @@
+---
+version: '2.4'
+services:
+  unmanic:
+    container_name: unmanic
+    image: josh5/unmanic:latest
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    #ports:
+    #  - 8888:8888
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./data/config:/config
+      - /mnt/synology-nas/Files/data/media/youtube:/library
+      - ./data/tmp:/tmp/unmanic
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.unmanic.entrypoints=http"
+      - "traefik.http.routers.unmanic.rule=Host(`unmanic.local.willkimble.net`)"
+      - "traefik.http.middlewares.unmanic-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.unmanic.middlewares=unmanic-https-redirect"
+      - "traefik.http.routers.unmanic-secure.entrypoints=https"
+      - "traefik.http.routers.unmanic-secure.rule=Host(`unmanic.local.willkimble.net`)"
+      - "traefik.http.routers.unmanic-secure.tls=true"
+      - "traefik.http.routers.unmanic-secure.service=unmanic"
+      - "traefik.http.services.unmanic.loadbalancer.server.port=8888"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.unmanic-secure-middlewares=authelia@docker"
+#################################################################
+networks:
+  proxy:
+    external: true

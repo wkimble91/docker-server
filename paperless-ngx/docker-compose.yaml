@@ -1,0 +1,85 @@
+version: "3.4"
+services:
+#################################################################
+  paperless-redis:
+    image: docker.io/library/redis:7
+    container_name: paperless-redis
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      paperless:
+    volumes:
+      - ./data/redis/data:/data
+#################################################################
+  paperless-gotenberg:
+    image: docker.io/gotenberg/gotenberg:7.8
+    container_name: paperless-gotenberg
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      paperless:
+    # The gotenberg chromium route is used to convert .eml files. We do not
+    # want to allow external content like tracking pixels or even javascript.
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+#################################################################
+  paperless-tika:
+    image: ghcr.io/paperless-ngx/tika:latest
+    container_name: paperless-tika
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      paperless:
+#################################################################
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - paperless-redis
+      - paperless-gotenberg
+      - paperless-tika
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ./data/paperless/data:/usr/src/paperless/data # Docker container data
+      - /mnt/synology-nas/Files/personal/documents/Paperless/Media:/usr/src/paperless/media # Location of your documents
+      - /mnt/synology-nas/Files/personal/documents/Paperless/Backups:/usr/src/paperless/export # Target for backups
+      - /mnt/synology-nas/Files/personal/documents/Paperless/Watch-Folder:/usr/src/paperless/consume # Watch folder
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+      paperless:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paperless.entrypoints=http"
+      - "traefik.http.routers.paperless.rule=Host(`paperlessngx.local.willkimble.net`)"
+      - "traefik.http.middlewares.paperless-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.paperless.middlewares=paperless-https-redirect"
+      - "traefik.http.routers.paperless-secure.entrypoints=https"
+      - "traefik.http.routers.paperless-secure.rule=Host(`paperlessngx.local.willkimble.net`)"
+      - "traefik.http.routers.paperless-secure.tls=true"
+      - "traefik.http.routers.paperless-secure.service=paperless"
+      - "traefik.http.services.paperless.loadbalancer.server.port=8000"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.paperless-secure.middlewares=authelia@docker"
+#################################################################
+networks:
+  proxy:
+    external: true
+  paperless:

@@ -1,0 +1,299 @@
+---
+services:
+#################################################################
+  qbittorrent-gluetun:
+    #image: ghcr.io/qdm12/gluetun:v3.34 #Working
+    image: ghcr.io/qdm12/gluetun:v3.34
+    container_name: gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./data/gluetun:/gluetun
+    environment:
+      ## ProtonVPN Wireguard
+      # See https://github.com/qdm12/gluetun/wiki
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - VPN_ENDPOINT_IP=${VPN_ENDPOINT_IP} #US-NY#69
+      - VPN_ENDPOINT_PORT=${VPN_ENDPOINT_PORT}
+      - WIREGUARD_PUBLIC_KEY=${WIREGUARD_PUBLIC_KEY}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
+      - TZ=Etc/UTC
+      - UPDATER_PERIOD=
+      - UPDATER_VPN_SERVICE_PROVIDERS=
+    env_file:
+      - .env
+    expose:
+      - 8080/tcp # qBittorrent
+      - 9696/tcp # Prowlarr
+      - 8019 # Seedcross
+      - 8000/tcp # Homepage Widget
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+        ipv4_address: ${GLUETUN_IP}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      ### Gluetun ###
+      - "traefik.http.routers.gluetun.entrypoints=http"
+      - "traefik.http.routers.gluetun.rule=Host(`gluetun.local.willkimble.net`)"
+      - "traefik.http.middlewares.gluetun-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.gluetun.middlewares=gluetun-https-redirect"
+      - "traefik.http.routers.gluetun-secure.entrypoints=https"
+      - "traefik.http.routers.gluetun-secure.rule=Host(`gluetun.local.willkimble.net`)"
+      - "traefik.http.routers.gluetun-secure.tls=true"
+      - "traefik.http.routers.gluetun-secure.service=gluetun"
+      - "traefik.http.services.gluetun.loadbalancer.server.port=8000"
+      ### qBittorrent ###
+      - "traefik.http.routers.qbittorrent.entrypoints=http"
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.local.willkimble.net`)"
+      - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
+      - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
+      - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.local.willkimble.net`)"
+      - "traefik.http.routers.qbittorrent-secure.tls=true"
+      - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      ### Prowlarr ###
+      - "traefik.http.routers.prowlarr.entrypoints=http"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.local.willkimble.net`)"
+      - "traefik.http.middlewares.prowlarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.prowlarr.middlewares=prowlarr-https-redirect"
+      - "traefik.http.routers.prowlarr-secure.entrypoints=https"
+      - "traefik.http.routers.prowlarr-secure.rule=Host(`prowlarr.local.willkimble.net`)"
+      - "traefik.http.routers.prowlarr-secure.tls=true"
+      - "traefik.http.routers.prowlarr-secure.service=prowlarr"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+      - "traefik.http.routers.prowlarr-secure-middlewares=authelia@docker"
+      ### Sonarr ###
+      - "traefik.http.routers.sonarr.entrypoints=http"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.local.willkimble.net`)"
+      - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
+      - "traefik.http.routers.sonarr-secure.entrypoints=https"
+      - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.local.willkimble.net`)"
+      - "traefik.http.routers.sonarr-secure.tls=true"
+      - "traefik.http.routers.sonarr-secure.service=sonarr"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+      ### Radarr ###
+      - "traefik.http.routers.radarr.entrypoints=http"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.local.willkimble.net`)"
+      - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
+      - "traefik.http.routers.radarr-secure.entrypoints=https"
+      - "traefik.http.routers.radarr-secure.rule=Host(`radarr.local.willkimble.net`)"
+      - "traefik.http.routers.radarr-secure.tls=true"
+      - "traefik.http.routers.radarr-secure.service=radarr"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+      ### Bazarr ###
+      - "traefik.http.routers.bazarr.entrypoints=http"
+      - "traefik.http.routers.bazarr.rule=Host(`bazarr.local.willkimble.net`)"
+      - "traefik.http.middlewares.bazarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.bazarr.middlewares=bazarr-https-redirect"
+      - "traefik.http.routers.bazarr-secure.entrypoints=https"
+      - "traefik.http.routers.bazarr-secure.rule=Host(`bazarr.local.willkimble.net`)"
+      - "traefik.http.routers.bazarr-secure.tls=true"
+      - "traefik.http.routers.bazarr-secure.service=bazarr"
+      - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
+#################################################################
+  qbittorrent:
+    # https://docs.linuxserver.io/images/docker-qbittorrent
+    image: linuxserver/qbittorrent:4.6.0
+    container_name: qbittorrent
+    restart: unless-stopped
+    volumes:
+      - ./data/qbittorrent:/config
+      - ./data/cross-seed/output:/cross-seed
+      - /mnt/synology-nas/Files/data/torrents:/data/torrents
+      - /mnt/synology-nas/Files/data/media/elearning:/elearning           #E-learning
+      - /mnt/synology-nas/Files/data/media/games/switch:/switch           #Games - Switch
+      - /mnt/synology-nas/Files/data/media/games/pc:/pc                   #Games - PC
+      - /mnt/synology-nas/Files/data/media/games/vr:/vr                   #Games - VR
+      - /mnt/synology-nas/Files/data/torrents/music:/music                #Music
+      - /mnt/synology-nas/Files/data/media/books/ebooks:/ebooks           #eBooks
+      - /mnt/synology-nas/Files/data/media/books/audiobooks:/audiobooks   #Audiobooks
+      - /mnt/synology-nas/Files/data/torrents/longterm:/longterm          #Long Term/Temp 
+    environment:
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+#################################################################
+  qbittorrent-natmap:
+    # https://github.com/soxfor/qbittorrent-natmap
+    image: ghcr.io/soxfor/qbittorrent-natmap:latest
+    container_name: qbittorrent-natmap
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ=Etc/UTC
+      # QBit Settings
+      - QBITTORRENT_SERVER=${QBITTORRENT_SERVER}
+      - QBITTORRENT_PORT=${QBITTORRENT_PORT}
+      - QBITTORRENT_USER=${QBITTORRENT_USER}
+      - QBITTORRENT_PASS=${QBITTORRENT_PASS}
+      # VPN Settings 
+      - VPN_GATEWAY=
+      - VPN_CT_NAME=gluetun
+      - VPN_IF_NAME=tun0
+      - CHECK_INTERVAL=300
+      - NAT_LEASE_LIFETIME=300
+    env_file:
+      - .env
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent:
+        condition: service_started
+      qbittorrent-gluetun:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+#################################################################
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./data/prowlarr:/config
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+#################################################################
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    security_opt:
+      - no-new-privileges:true
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/radarr:/config
+      - /mnt/synology-nas/Files/data:/data
+#################################################################
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    security_opt:
+      - no-new-privileges:true
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/sonarr:/config
+      - /mnt/synology-nas/Files/data:/data
+#################################################################
+  bazarr:
+    container_name: bazarr
+    image: ghcr.io/hotio/bazarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    security_opt:
+      - no-new-privileges:true
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/bazarr:/config
+      - /mnt/synology-nas/Files/data/media:/data/media
+#################################################################
+  cross-seed:
+    image: crossseed/cross-seed
+    container_name: cross-seed
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent:
+        condition: service_started
+      prowlarr:
+        condition: service_started
+    volumes:
+      - ./data/cross-seed/config:/config
+      - ./data/qbittorrent/qBittorrent/BT_backup:/torrents:ro
+      - ./data/cross-seed/output:/cross-seeds
+    command: daemon # search or daemon
+    restart: unless-stopped
+#################################################################
+  qbit_manage:
+    container_name: qbit_manage
+    image: bobokun/qbit_manage
+    volumes:
+      - ./data/qbit_manage/config:/config:rw
+      - ./data/qbittorrent/qBittorrent/BT_backup:/data/torrents:rw
+      - ./data/qbittorrent/:/qbittorrent/:ro
+      - ./data/cross-seed/output:/cross-seed
+    environment:
+      - QBT_RUN=false
+      - QBT_SCHEDULE=30
+      - QBT_CONFIG=config.yml
+      - QBT_LOGFILE=activity.log
+      - QBT_CROSS_SEED=true
+      - QBT_RECHECK=false
+      - QBT_CAT_UPDATE=false
+      - QBT_TAG_UPDATE=true
+      - QBT_REM_UNREGISTERED=false
+      - QBT_REM_ORPHANED=false
+      - QBT_TAG_TRACKER_ERROR=false
+      - QBT_TAG_NOHARDLINKS=false
+      - QBT_SHARE_LIMITS=false
+      - QBT_SKIP_CLEANUP=false
+      - QBT_DRY_RUN=false
+      - QBT_LOG_LEVEL=INFO
+      - QBT_DIVIDER==
+      - QBT_WIDTH=100
+      - QBT_SKIP_QB_VERSION_CHECK=True
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent:
+        condition: service_started
+    restart: unless-stopped
+#################################################################
+networks:
+  proxy:
+    external: true

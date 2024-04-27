@@ -1,0 +1,83 @@
+version: '3'
+#################################################################
+x-common-env: &cenv
+  MEILI_URL: http://search:7700
+  MEILI_MASTER_KEY: vODkljPcfFANYNepCHyDyGjzAMPcdHnrb6X5KyXQPWo
+#################################################################
+services:
+  search:
+    container_name: wanderer-search
+    image: flomp/wanderer-search
+    environment:
+      <<: *cenv
+      MEILI_NO_ANALYTICS: true
+    ports:
+      - 7700:7700
+    networks:
+      - wanderer
+    volumes:
+      - ./data/data.ms:/meili_data/data.ms
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail http://localhost:7700/health || exit 1
+      interval: 15s
+      retries: 10
+      start_period: 20s
+      timeout: 10s
+#################################################################
+  db:
+    container_name: wanderer-db
+    image: flomp/wanderer-db
+    depends_on:
+      search:
+        condition: service_healthy
+    environment:
+      <<: *cenv
+    expose:
+      - "8090"
+    networks:
+      - wanderer
+    restart: unless-stopped
+    volumes:
+      - ./data/pb_data:/pb_data
+#################################################################
+  web:
+    container_name: wanderer-web
+    image: flomp/wanderer-web
+    depends_on:
+      search:
+        condition: service_healthy
+      db:
+        condition: service_started
+    environment:
+      <<: *cenv
+      ORIGIN: https://wanderer.local.willkimble.net
+      BODY_SIZE_LIMIT: Infinity
+      PUBLIC_POCKETBASE_URL: http://db:8090
+      PUBLIC_DISABLE_SIGNUP: false
+    expose:
+      - "3000"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      wanderer:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wanderer-web.entrypoints=http"
+      - "traefik.http.routers.wanderer-web.rule=Host(`wanderer.local.willkimble.net`)"
+      - "traefik.http.middlewares.wanderer-web-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wanderer-web.middlewares=wanderer-web-https-redirect"
+      - "traefik.http.routers.wanderer-web-secure.entrypoints=https"
+      - "traefik.http.routers.wanderer-web-secure.rule=Host(`wanderer.local.willkimble.net`)"
+      - "traefik.http.routers.wanderer-web-secure.tls=true"
+      - "traefik.http.routers.wanderer-web-secure.service=wanderer-web"
+      - "traefik.http.services.wanderer-web.loadbalancer.server.port=3000"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.wanderer-web-secure-middlewares=authelia@docker"
+#################################################################
+networks:
+  wanderer:
+  proxy:
+    external: true

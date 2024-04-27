@@ -1,0 +1,82 @@
+version: "3.8"
+name: immich
+
+services:
+#################################################################
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    command: [ "start.sh", "immich" ]
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+      default:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich.entrypoints=http"
+      - "traefik.http.routers.immich.rule=Host(`immich.local.willkimble.net`)"
+      - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.immich.middlewares=immich-https-redirect"
+      - "traefik.http.routers.immich-secure.entrypoints=https"
+      - "traefik.http.routers.immich-secure.rule=Host(`immich.local.willkimble.net`)"
+      - "traefik.http.routers.immich-secure.tls=true"
+      - "traefik.http.routers.immich-secure.service=immich"
+      - "traefik.http.services.immich.loadbalancer.server.port=3001"
+      - "traefik.docker.network=proxy"
+#################################################################
+  immich-microservices:
+    container_name: immich_microservices
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    command: [ "start.sh", "microservices" ]
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+#################################################################
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    volumes:
+      - ./data/model-cache:/cache
+    env_file:
+      - .env
+    restart: unless-stopped
+#################################################################
+  redis:
+    container_name: immich_redis
+    image: redis:6.2-alpine@sha256:3995fe6ea6a619313e31046bd3c8643f9e70f8f2b294ff82659d409b47d06abb
+    restart: unless-stopped
+#################################################################
+  database:
+    container_name: immich_postgres
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+#################################################################
+
+networks:
+  default:
+  proxy:
+    external: true

@@ -1,0 +1,214 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/services
+
+- Streaming:
+    - Jellyfin:
+        href: https://jellyfin.local.willkimble.net/
+        #description: 映画と番組
+        icon: jellyfin
+        server: my-docker
+        container: jellyfin
+        widget:
+          type: jellyfin
+          url: https://jellyfin.local.willkimble.net
+          key:
+
+    - Navidrome:
+        href: https://navidrome.local.willkimble.net
+        #description: 音楽
+        icon: navidrome.png
+        container: navidrome
+        widget:
+          type: navidrome
+          url: https://navidrome.local.willkimble.net
+          user:
+          token: #md5(password + salt)
+          salt:
+
+
+- Media:
+    - AdGuard Home:
+        href: https://adguard.local.willkimble.net
+        #description: DNS
+        icon: adguard-home.png
+        container: adguard
+        widget:
+          type: adguard
+          url: http://172.31.0.5
+          username:
+          password:
+
+    - Speedtest:
+        href: https://speedtest.local.willkimble.net
+        #description: ビデオゲーム
+        icon: speedtest-tracker.png
+        container: speedtest
+        widget:
+          type: speedtest
+          url: https://speedtest.local.willkimble.net
+
+    - Uptime Kuma:
+        href: https://uptime-kuma.local.willkimble.net/
+        #description: 稼働時間
+        icon: uptime-kuma.png
+        container: uptime-kuma
+        widget:
+          type: uptimekuma
+          url: https://uptime-kuma.local.willkimble.net
+          slug: homepage
+
+    - Audiobookshelf:
+        href: https://audiobookshelf.local.willkimble.net
+        #description: 本とオーディオブック
+        icon: audiobookshelf.png
+        container: audiobookshelf
+        widget:
+          type: audiobookshelf
+          url: https://audiobookshelf.local.willkimble.net
+          key:
+          fields: ["books", "booksDuration"]
+
+    - Immich:
+        href: https://immich.local.willkimble.net
+        #description: 写真
+        icon: immich.png
+        container: immich_server
+        widget:
+          type: immich
+          url: https://immich.local.willkimble.net
+          key:
+          fields: ["photos", "videos", "storage"]
+
+    - Tandoor:
+        href: https://tandoor.local.willkimble.net/
+        #description: レシピ
+        icon: tandoor.png
+        container: tandoor_app
+        widget:
+          type: customapi
+          url: https://tandoor.local.willkimble.net/api/recipe
+          method: GET
+          headers:
+            Authorization: Bearer tda_
+          mappings:
+              - field: count
+                label: Recipes
+                format: number
+
+    - qBittorrent:
+        href: https://qbittorrent.local.willkimble.net/
+        #description: トレント
+        icon: qbittorrent.png
+        container: qbittorrent
+        widget:
+          type: qbittorrent
+          url: https://qbittorrent.local.willkimble.net
+          username:
+          password:
+
+    - Gluetun:
+        #description: VPN
+        icon: proton-vpn
+        container: gluetun
+        widget:
+          type: gluetun
+          url: https://gluetun.local.willkimble.net
+
+    - Unmanic:
+        href: https://unmanic.local.willkimble.net/
+        #description: インデクサ
+        icon: unmanic.png
+        container: unmanic
+        widget:
+          type: unmanic
+          url: https://unmanic.local.willkimble.net
+
+    - Prowlarr:
+        href: https://prowlarr.local.willkimble.net/
+        #description: インデクサ
+        icon: prowlarr.png
+        container: prowlarr
+        widget:
+          type: prowlarr
+          url: https://prowlarr.local.willkimble.net
+          key:
+
+    - Radarr:
+        href: https://radarr.local.willkimble.net/
+        #description: インデクサ
+        icon: radarr.png
+        container: radarr
+        widget:
+          type: radarr
+          url: https://radarr.local.willkimble.net
+          key:
+          fields: ["wanted", "queued", "movies"]
+
+    - Sonarr:
+        href: https://sonarr.local.willkimble.net/
+        #description: インデクサ
+        icon: sonarr.png
+        container: sonarr
+        widget:
+          type: sonarr
+          url: https://sonarr.local.willkimble.net
+          key:
+
+- Static:
+    - Synology NAS:
+        href: https://willkimble.synology.me:6061
+        icon: /icons/nas.png
+        siteMonitor: https://willkimble.synology.me:6061
+
+    - Wanderer:
+        href: https://wanderer.local.willkimble.net/map?tl_lat=51.699799849741936&tl_lon=-68.20312500000001&br_lat=24.80668135385199&br_lon=-125.63964843750001
+        icon: /icons/wanderer.png
+        container: wanderer-web
+
+    - ActualBudget:
+        href: https://actualbudget.local.willkimble.net/
+        icon: actual.png
+        container: actualbudget
+
+    - Joplin:
+        href: https://joplin.local.willkimble.net
+        #description: 個人的なメモ
+        icon: joplin.png
+        container: joplin_server
+
+    - Paperless-NGX:
+        href: https://paperlessngx.local.willkimble.net
+        #description: 領収書
+        icon: paperless.png
+        container: paperless
+
+    - Wallos:
+        href: https://wallos.local.willkimble.net/
+        #description: 金融
+        icon: wallos.png
+        container: wallos
+
+    - Gameyfin:
+        href: https://gameyfin.local.willkimble.net
+        #description: ビデオゲーム
+        icon: gameyfin-light.png
+        container: gameyfin
+
+    - Vaultwarden:
+        href: https://vaultwarden.local.willkimble.net
+        #description: 暗号
+        icon: vaultwarden.png
+        container: vaultwarden
+
+    - Traefik:
+        href: https://traefik.local.willkimble.net/
+        #description: リバースプロキシ
+        icon: traefik.png
+        container: traefik
+
+    - Bazarr:
+        href: https://bazarr.local.willkimble.net/
+        #description: インデクサ
+        icon: bazarr.png
+        container: bazarr

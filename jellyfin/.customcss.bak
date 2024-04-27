@@ -1,0 +1,66 @@
+/* *** IMPORTS *** */
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/base.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/accentlist.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fixes.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/rounding.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/smallercast.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/header/header_transparent.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/login/login_frame.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fields/fields_border.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/cornerindicator/indicator_corner.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/titlepage/title_banner-logo.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/overlayprogress.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/hoverglow.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/glassy.css');
+
+@import url('https://ctalvio.github.io/Monochromic/backdrop-hack_style.css');
+
+/* *** CUSTOM *** */
+/*Style backdrop*/
+.backdropImage {filter: blur(18px) saturate(120%) contrast(120%) brightness(40%);}
+
+/*Accent and rounding*/
+:root {--accent: 98, 121, 205;}
+:root {--rounding: 12px;}
+
+/* Hide "manual" and "forgot" buttons */
+#loginPage .raised.cancel.block.btnManual.emby-button {display: none}
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button {display: none}
+
+/* Adds some margin on the item page */
+.selectContainer {margin-right: 1em !important;}
+
+/* Size episode preview images to match thumbnail ratio*/
+.listItemImage.listItemImage-large.itemAction.lazy {width: 19.56vw !important; height: 11vw !important;}
+
+/* Hide Overview in season view */
+.secondary.listItem-overview.listItemBodyText {display: none;}
+
+/*Hide crap*/
+.headerCastButton { display: none; }
+.headerSyncButton { display: none; }
+.guideChannelNumber { display: none; }
+#similarCollapsible { display: none; }
+div.starRatingContainer { display: none; }
+
+/* Hides "Latest Youtube" */
+#homeTab > div > div.section2 > div:nth-child(3) {display: none;}
+
+/* Hides "Next Up" */
+#homeTab > div > div.section3 {display: none;}
+
+/* Full titles */
+.cardText { white-space: normal; }
+
+/* Hide scroll buttons for "My Media" on home screen */
+/*.section0 .emby-scrollbuttons  {display: none;}*/
+
+/* Makes season image scroll with page */
+.detailImageContainer .portraitCard { position: fixed !important; top: 12% !important; }
+
+/* Background color */
+.backgroundContainer {background-color: #191919;}
+
+.playedIndicator {background-color: rgba(0,0,0,.6);}
+
+.itemProgressBarForeground{background-color: rgba(98,121,205,.7);}

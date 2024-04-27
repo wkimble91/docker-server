@@ -1,0 +1,114 @@
+name: adguard
+services:
+#################################################################
+  adguard:
+    container_name: adguard
+    image: adguard/adguardhome
+    depends_on: [unbound]
+    volumes:
+      - ./data/adguard/work:/opt/adguardhome/work
+      - ./data/adguard/conf:/opt/adguardhome/conf
+    ports:
+      # Plain DNS
+      - 53:53/tcp
+      - 53:53/udp
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    networks:
+      proxy:
+      dns_net:
+        ipv4_address: ${ADGUARD_IP}
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguard.entrypoints=http"
+      - "traefik.http.routers.adguard.rule=Host(`adguard.local.willkimble.net`)"
+      - "traefik.http.middlewares.adguard-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.adguard.middlewares=adguard-https-redirect"
+      - "traefik.http.routers.adguard-secure.entrypoints=https"
+      - "traefik.http.routers.adguard-secure.rule=Host(`adguard.local.willkimble.net`)"
+      - "traefik.http.routers.adguard-secure.tls=true"
+      - "traefik.http.routers.adguard-secure.tls.certresolver=http"
+      - "traefik.http.routers.adguard-secure.service=adguard"
+      - "traefik.http.services.adguard.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.adguard-secure.middlewares=authelia@docker"
+#################################################################
+  unbound:
+    container_name: unbound
+    image: mvance/unbound:latest
+    networks:
+      dns_net:
+        ipv4_address: ${UNBOUND_IP}
+    env_file:
+      - .env
+    volumes:
+    - ./data/unbound:/opt/unbound/etc/unbound
+    expose:
+    - 5053
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+#################################################################
+  wg-easy:
+    environment:
+      # Change Language:
+      - LANG=en
+      # ⚠️ Required:
+      # Change this to your host's public address
+      - WG_HOST=${WG_HOST}
+
+      # Optional:
+      # - PASSWORD=foobar123
+      - WG_PORT=${WG_PORT}
+      # - WG_DEFAULT_ADDRESS=10.8.0.x
+      - WG_DEFAULT_DNS=${ADGUARD_IP}
+      # - WG_MTU=1420
+      # - WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24
+      # - WG_PERSISTENT_KEEPALIVE=25
+      # - UI_TRAFFIC_STATS=true
+      # - UI_CHART_TYPE=0 # (0 Charts disabled, 1 # Line chart, 2 # Area chart, 3 # Bar chart)
+    env_file:
+      - .env
+    image: ghcr.io/wg-easy/wg-easy
+    container_name: wg-easy
+    volumes:
+      - ./data/wireguard:/etc/wireguard
+    #ports:
+    #  - "51930:51930/udp"
+    networks:
+      proxy:
+      dns_net:
+        ipv4_address: ${WG_IP}
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wireguard.entrypoints=http"
+      - "traefik.http.routers.wireguard.rule=Host(`wireguard.local.willkimble.net`)"
+      - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
+      - "traefik.http.routers.wireguard-secure.entrypoints=https"
+      - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.local.willkimble.net`)"
+      - "traefik.http.routers.wireguard-secure.tls=true"
+      - "traefik.http.routers.wireguard-secure.tls.certresolver=http"
+      - "traefik.http.routers.wireguard-secure.service=wireguard"
+      - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.wireguard-secure.middlewares=authelia@docker"
+#################################################################
+networks:
+  proxy:
+    external: true
+  dns_net:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.31.0.0/24

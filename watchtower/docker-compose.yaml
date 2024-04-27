@@ -1,0 +1,28 @@
+version: '3'
+services:
+#################################################################
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+    env_file:
+      - .env
+    command: --http-api-metrics
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_SCHEDULE=0 0 9 * * *
+      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+#################################################################
+networks:
+  proxy:
+    external: true
