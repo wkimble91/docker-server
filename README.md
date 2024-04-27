@@ -8,7 +8,7 @@
 
 <p>Actual is a local-first personal finance tool. It is 100% free and open-source, written in NodeJS, it has a synchronization element so that all your changes can move between devices without any heavy lifting.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/actualbudget/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/actualbudget/docker-compose.yaml)**
 
 <br>
 
@@ -30,7 +30,7 @@
 <p>Unbound is a validating, recursive, caching DNS resolver.</p>
 <p>WG-Easy is an extremely simple yet fast and modern Wireguard VPN clinet that utilizes state-of-the-art cryptography in an easy to use GUI.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/adguard/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/adguard/docker-compose.yaml)**
 
 <br>
 
@@ -40,7 +40,7 @@
 
 <p>Audiobookshelf is a self-hosted audiobook server for managing and playing your audiobooks.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/audiobookshelf/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/audiobookshelf/docker-compose.yaml)**
 
 <br>
 
@@ -53,11 +53,11 @@
     sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing
     denying, or redirecting requests.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/authelia/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/authelia/docker-compose.yaml)**
 
-**[configuration](https://github.com/wkimble91/docker-compose-files/blob/main/authelia/configuration.yaml)**
+**[configuration](https://github.com/wkimble91/docker-server/blob/main/authelia/configuration.yaml)**
 
-**[user_database](https://github.com/wkimble91/docker-compose-files/blob/main/authelia/users_database.yaml)**
+**[user_database](https://github.com/wkimble91/docker-server/blob/main/authelia/users_database.yaml)**
 
 <br>
 
@@ -69,27 +69,37 @@
 
 <p>CrowdSec is a free, open-source and collaborative IPS. Analyze behaviors, respond to attacks & share signals across the community.With CrowdSec, you can set up your own intrusion detection system that parses logs, detects and blocks threats, and shares bad actors with the larger CrowdSec community.It works great with a reverse proxy like traefik. I used this <a href="https://technotim.live/posts/crowdsec-traefik/">blog</a> to figure out how to implement it.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/crowdsec/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/crowdsec/docker-compose.yaml)**
+
+<br>
+
+<h2><a href="https://raw.githubusercontent.com/gameyfin/gameyfin/04a3643b8fd38ae4d048269bddef49364c207b13/assets/Gameyfin_Logo_White_Border.svg"><img src="https://raw.githubusercontent.com/gameyfin/gameyfin/04a3643b8fd38ae4d048269bddef49364c207b13/assets/Gameyfin_Logo_White_Border.svg"
+            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
+            title="Homepage" /></a> <a href="https://github.com/gameyfin/gameyfin"> Gameyfin </a></h2>
+
+<p>A simple game library manager. Automatically scans your game library folder and downloads additional metadata from IGDB and allows access and downloads from your library via your Web-Browser.</p>
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/gameyfin/docker-compose.yaml)**
 
 <br>
 
 <h2><a href="https://i.imgur.com/rIB5iu9.png"><img src="https://i.imgur.com/rIB5iu9.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Homepage" /></a> <a href="https://github.com/benphelps/homepage"> homepage </a></h2>
+            title="Homepage" /></a> <a href="https://github.com/benphelps/homepage"> Homepage </a></h2>
 
 <p>A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations
     for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via
     docker labels).</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/homepage/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/homepage/docker-compose.yaml)**
 
-**[dockerconfig](https://github.com/wkimble91/docker-compose-files/blob/main/homepage/docker.yaml)**
+**[dockerconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/docker.yaml)**
 
-**[servicesconfig](https://github.com/wkimble91/docker-compose-files/blob/main/homepage/services.yaml)**
+**[servicesconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/services.yaml)**
 
-**[settingsconfig](https://github.com/wkimble91/docker-compose-files/blob/main/homepage/settings.yaml)**
+**[settingsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/settings.yaml)**
 
-**[widgetsconfig](https://github.com/wkimble91/docker-compose-files/blob/main/homepage/widgets.yaml)**
+**[widgetsconfig](https://github.com/wkimble91/docker-server/blob/main/homepage/widgets.yaml)**
 
 <br>
 
@@ -102,7 +112,7 @@
     for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via
     docker labels).</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/immich/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/immich/docker-compose.yaml)**
 
 <br>
 
@@ -116,9 +126,9 @@
     multiple apps. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team
     who want to build something better and work together to achieve it.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/jellyfin/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/jellyfin/docker-compose.yaml)**
 
-**[customcss](https://github.com/wkimble91/docker-compose-files/blob/main/jellyfin/custom.css)**
+**[customcss](https://github.com/wkimble91/docker-server/blob/main/jellyfin/custom.css)**
 
 <br>
 
@@ -131,7 +141,7 @@
     and presentation file formats and works in all modern browsers. Also used to sync bookmarks, contacts, tasks and
     more.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/nextcloud/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/nextcloud/docker-compose.yaml)**
 
 <br>
 
@@ -143,7 +153,7 @@
 <p>Paperless-ngx is a document management system that transforms your physical documents into a searchable online
     archive so you can keep, well, less paper.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/paperless-ngx/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/paperless-ngx/docker-compose.yaml)**
 
 <br>
 
@@ -157,7 +167,7 @@
     use. The application allows you to manage all your orchestrator resources (containers, images, volumes, networks and
     more) through a "smart" GUI and/or an extensive API.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/portainer/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/portainer/docker-compose.yaml)**
 
 <br>
 
@@ -172,7 +182,7 @@
 <p>It aims to be a good alternative to all other bittorrent clients out there. qBittorrent is fast, stable and provides
     unicode support as well as many features.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/qbittorrent/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/qbittorrent/docker-compose.yaml)**
 
 <br>
 
@@ -185,7 +195,7 @@
     as a command line application or as a web application. This application is distributed as a single binary, which
     means it can be installed and used easily.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/shiori/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/shiori/docker-compose.yaml)**
 
 <br>
 
@@ -198,7 +208,7 @@
     simply store them in a nicely organized way. A basic permission system exists but this application is not meant to
     be run as a public page.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/syncthing/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/syncthing/docker-compose.yaml)**
 
 <br>
 
@@ -211,7 +221,7 @@
     simply store them in a nicely organized way. A basic permission system exists but this application is not meant to
     be run as a public page.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/tandoor/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/tandoor/docker-compose.yaml)**
 
 <br>
 
@@ -225,11 +235,11 @@
     Rancherv2, Amazon ECS, ...) and configures itself automatically and dynamically. Pointing Traefik at your
     orchestrator should be the only configuration step you need.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/traefik/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/traefik/docker-compose.yaml)**
 
-**[configfile](https://github.com/wkimble91/docker-compose-files/blob/main/traefik/config.yml)**
+**[configfile](https://github.com/wkimble91/docker-server/blob/main/traefik/config.yml)**
 
-**[traefikfile](https://github.com/wkimble91/docker-compose-files/blob/main/traefik/traefik.yml)**
+**[traefikfile](https://github.com/wkimble91/docker-server/blob/main/traefik/traefik.yml)**
 
 <br>
 
@@ -240,7 +250,7 @@
 
 <p>Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/trilium/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/trilium/docker-compose.yaml)**
 
 <br>
 
@@ -252,7 +262,7 @@
 
 <p>A self-hosted uptime monitoring tool for HTTP(s), TCP, HTTP(s) Keyword, Ping, DNS Record, and Push requests.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/uptime-kuma/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/uptime-kuma/docker-compose.yaml)**
 
 <br>
 
@@ -265,7 +275,7 @@
     clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.
 </p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/vaultwarden/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/vaultwarden/docker-compose.yaml)**
 
 <br>
 
@@ -278,4 +288,4 @@
     Docker Hub or your own image registry. Watchtower will pull down your new image, gracefully shut down your existing
     container and restart it with the same options that were used when it was deployed initially.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-compose-files/blob/main/watchtower/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/watchtower/docker-compose.yaml)**
