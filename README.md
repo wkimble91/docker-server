@@ -32,6 +32,8 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/adguard/docker-compose.yaml)**
 
+**[env](https://github.com/wkimble91/docker-server/blob/main/adguard/.env-sample)**
+
 <br>
 
 <h2><a href="https://www.audiobookshelf.org/Logo.png"><img src="https://www.audiobookshelf.org/Logo.png"
@@ -71,6 +73,10 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/crowdsec/docker-compose.yaml)**
 
+**[acquisconfig](https://github.com/wkimble91/docker-server/blob/main/crowdsec/config/acquis.yaml)**
+
+**[env](https://github.com/wkimble91/docker-server/blob/main/crowdsec/.env-sample)**
+
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/gameyfin/gameyfin/04a3643b8fd38ae4d048269bddef49364c207b13/assets/Gameyfin_Logo_White_Border.svg"><img src="https://raw.githubusercontent.com/gameyfin/gameyfin/04a3643b8fd38ae4d048269bddef49364c207b13/assets/Gameyfin_Logo_White_Border.svg"
@@ -80,6 +86,8 @@
 <p>A simple game library manager. Automatically scans your game library folder and downloads additional metadata from IGDB and allows access and downloads from your library via your Web-Browser.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/gameyfin/docker-compose.yaml)**
+
+**[env](https://github.com/wkimble91/docker-server/blob/main/gameyfin/.env-sample)**
 
 <br>
 
@@ -113,6 +121,8 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/immich/docker-compose.yaml)**
 
+**[env](https://github.com/wkimble91/docker-server/blob/main/immich/.env-sample)**
+
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/jellyfin.png"><img
@@ -127,7 +137,7 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/jellyfin/docker-compose.yaml)**
 
-**[customcss](https://github.com/wkimble91/docker-server/blob/main/jellyfin/custom.css)**
+**[customcss](https://github.com/wkimble91/docker-server/blob/main/jellyfin/.customcss)**
 
 <br>
 
@@ -138,6 +148,8 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/joplin/docker-compose.yaml)**
 
+**[env](https://github.com/wkimble91/docker-server/blob/main/joplin/.env-sample)**
+
 <br>
 
 <h2><a href="https://avatars.githubusercontent.com/u/26692192?s=200&v=4"><img src="https://avatars.githubusercontent.com/u/26692192?s=200&v=4" style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;" title="Navidrome" /></a> <a href="https://github.com/navidrome/navidrome"> Navidrome </a>
@@ -146,6 +158,8 @@
 <p>Navidrome is an open source web-based music collection server and streamer. It gives you freedom to listen to your music collection from any browser or mobile device. It's like your personal Spotify!</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/navidrome/docker-compose.yaml)**
+
+**[env](https://github.com/wkimble91/docker-server/blob/main/navidrome/.env-sample)**
 
 <br>
 
@@ -173,6 +187,8 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/qbittorrent/docker-compose.yaml)**
 
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/qbittorrent/.env-sample)**
+
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/speedtest-tracker-logo.png"><img src="https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/speedtest-tracker-logo.png" style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;" title="speedtest tracker" /></a> <a href="https://github.com/alexjustesen/speedtest-tracker"> Speedtest Tracker </a></h2>
@@ -180,6 +196,8 @@
 <p>Speedtest-tracker is a self-hosted internet performance tracking application that runs speedtest checks against Ookla's Speedtest service.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/speedtest/docker-compose.yaml)**
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/speedtest/.env-sample)**
 
 <br>
 
@@ -194,6 +212,8 @@
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/tandoor/docker-compose.yaml)**
 
+**[env](https://github.com/wkimble91/docker-server/blob/main/tandoor/.env-sample)**
+
 <br>
 
 <h2><a href="https://raw.githubusercontent.com/traefik/traefik/master/docs/content/assets/img/traefik.logo.png"><img
@@ -207,6 +227,8 @@
     orchestrator should be the only configuration step you need.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/traefik/docker-compose.yaml)**
+
+**[env](https://github.com/wkimble91/docker-server/blob/main/traefik/.env-sample)**
 
 **[configfile](https://github.com/wkimble91/docker-server/blob/main/traefik/config.yml)**
 
