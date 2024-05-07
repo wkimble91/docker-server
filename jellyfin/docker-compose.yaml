@@ -3,7 +3,8 @@ version: "2.1"
 services:
 #################################################################
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest #jellyfin:10.8.10-1-ls220 works for YT image extraction
+    image: lscr.io/linuxserver/jellyfin:latest
+    #image: lscr.io/linuxserver/jellyfin:10.8.10-1-ls220 #works for YT image extraction
     container_name: jellyfin
     environment:
       - PUID=1000
