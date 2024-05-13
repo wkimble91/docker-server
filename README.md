@@ -1,7 +1,9 @@
 <h1>Docker Compose Files</h1>
 <h4>A backup of my running docker containers and their project homepages.</h4>
-<br>
 
+The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-update.sh) I use to update multiple docker folders at once or default to current folder.
+
+<br>
 <h2><a href="https://avatars.githubusercontent.com/u/37879538"><img src="https://avatars.githubusercontent.com/u/37879538"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto; border-radius: 50%;"
             title="ActualBudget" /></a> <a href="https://github.com/actualbudget/actual"> Actualbudget </a></h2>
