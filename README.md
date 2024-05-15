@@ -173,7 +173,7 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 <p>Paperless-ngx is a document management system that transforms your physical documents into a searchable online
     archive so you can keep, well, less paper.</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/paperless-ngx/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/paperless/docker-compose.yaml)**
 
 <br>
 
