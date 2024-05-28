@@ -13,10 +13,10 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 853:853
+      #- 853:853
     environment:
-      - CF_API_EMAIL=${CF_API_EMAIL}
-      - CF_API_KEY=${CF_API_KEY}
+      CF_DNS_API_TOKEN: ${CF_API_KEY}
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
     env_file:
       - .env
     volumes:
@@ -25,12 +25,12 @@ services:
       - ./data/traefik.yml:/traefik.yml:ro
       - ./data/acme.json:/acme.json
       - ./data/config.yml:/config.yml:ro
-      - traefik-logs:/var/log/traefik
+      #- traefik-logs:/var/log/traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
       - "traefik.http.routers.traefik.rule=Host(`traefik.local.willkimble.net`)"
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=will:$$apr1$$DKE8KqXQ$$MQWDp/.fzRpBqkXAH4sWD1"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
@@ -48,5 +48,5 @@ networks:
   proxy:
     external: true
 #################################################################
-volumes:
-  traefik-logs:
+#volumes:
+#  traefik-logs:
