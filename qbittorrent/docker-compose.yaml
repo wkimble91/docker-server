@@ -240,6 +240,23 @@ services:
       - ./data/bazarr:/config
       - /mnt/synology-nas/Files/data/media:/data/media
 #################################################################
+  recyclarr:
+    container_name: recyclarr
+    image: ghcr.io/recyclarr/recyclarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    user: 1000:1000
+    environment:
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/recyclarr:/config
+#################################################################
   cross-seed:
     image: crossseed/cross-seed
     container_name: cross-seed
