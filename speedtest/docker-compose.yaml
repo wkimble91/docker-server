@@ -4,31 +4,21 @@ services:
   speedtest:
     image: lscr.io/linuxserver/speedtest-tracker:latest
     container_name: speedtest
-    expose:
-      - 443
     environment:
       - PUID=1000
       - PGID=1000
-      - DB_CONNECTION=pgsql
-      - DB_HOST=speedtest_db
-      - DB_PORT=5432
-      - DB_DATABASE=speedtest_tracker
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-    env_file:
-      - .env
+      - TZ=Etc/UTC
+      - APP_KEY=base64:beaJoAbtC5Zsm5iYlsYDFMVOhWEjYa2fy4Ab2eam3EU=
+      - DB_CONNECTION=sqlite
+      - SPEEDTEST_SCHEDULE="0 */6 * * *"
+      - SPEEDTEST_SERVERS=8864,64151,35180
     volumes:
-      - ./data/config:/config
-      - ./data/web:/etc/ssl/web
-    depends_on:
-      - db
+      - ./data:/config
+    networks:
+      proxy:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    networks:
-      proxy:
-      default:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.speedtest.entrypoints=http"
@@ -41,23 +31,8 @@ services:
       - "traefik.http.routers.speedtest-secure.service=speedtest"
       - "traefik.http.services.speedtest.loadbalancer.server.port=80"
       - "traefik.docker.network=proxy"
-#################################################################
-  db:
-    image: postgres:15
-    container_name: speedtest_db
-    restart: unless-stopped
-    env_file:
-      - .env
-    networks:
-      default:
-    environment:
-      - POSTGRES_DB=speedtest_tracker
-      - POSTGRES_USER=${DB_USERNAME}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - ./data/postgres/data:/var/lib/postgresql/data
+      - "traefik.http.routers.speedtest-secure-middlewares=authelia@docker"
 #################################################################
 networks:
-  default:
   proxy:
     external: true
