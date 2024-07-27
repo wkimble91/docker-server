@@ -32,6 +32,7 @@ services:
       - 9696/tcp # Prowlarr
       - 8019 # Seedcross
       - 8000/tcp # Homepage Widget
+      - 8191 #Flaresolverr
     security_opt:
       - no-new-privileges:true
     networks:
@@ -73,21 +74,21 @@ services:
       - "traefik.http.routers.prowlarr-secure-middlewares=authelia@docker"
       ### Sonarr ###
       - "traefik.http.routers.sonarr.entrypoints=http"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.local.willkimble.net`)"
+      - "traefik.http.routers.sonarr.rule=Host(`television.local.willkimble.net`)"
       - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
       - "traefik.http.routers.sonarr-secure.entrypoints=https"
-      - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.local.willkimble.net`)"
+      - "traefik.http.routers.sonarr-secure.rule=Host(`television.local.willkimble.net`)"
       - "traefik.http.routers.sonarr-secure.tls=true"
       - "traefik.http.routers.sonarr-secure.service=sonarr"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
       ### Radarr ###
       - "traefik.http.routers.radarr.entrypoints=http"
-      - "traefik.http.routers.radarr.rule=Host(`radarr.local.willkimble.net`)"
+      - "traefik.http.routers.radarr.rule=Host(`movies.local.willkimble.net`)"
       - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
       - "traefik.http.routers.radarr-secure.entrypoints=https"
-      - "traefik.http.routers.radarr-secure.rule=Host(`radarr.local.willkimble.net`)"
+      - "traefik.http.routers.radarr-secure.rule=Host(`movies.local.willkimble.net`)"
       - "traefik.http.routers.radarr-secure.tls=true"
       - "traefik.http.routers.radarr-secure.service=radarr"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"
@@ -256,6 +257,25 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./data/recyclarr:/config
+#################################################################
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=Etc/UTC
+#    ports:
+#      - "${PORT:-8191}:8191"
+    restart: unless-stopped
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent-gluetun:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
 #################################################################
   cross-seed:
     image: crossseed/cross-seed

@@ -34,7 +34,7 @@ services:
       - "traefik.http.routers.speedtest.entrypoints=http"
       - "traefik.http.routers.speedtest.rule=Host(`speedtest.local.willkimble.net`)"
       - "traefik.http.middlewares.speedtest-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.speedtest.middlewares=gameyfin-https-redirect"
+      - "traefik.http.routers.speedtest.middlewares=speedtest-https-redirect"
       - "traefik.http.routers.speedtest-secure.entrypoints=https"
       - "traefik.http.routers.speedtest-secure.rule=Host(`speedtest.local.willkimble.net`)"
       - "traefik.http.routers.speedtest-secure.tls=true"
