@@ -274,17 +274,6 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 
 <br>
 
-<h2><a href="https://raw.githubusercontent.com/ellite/Wallos/main/images/siteicons/blue/walloswhite.png"><img
-            src="https://raw.githubusercontent.com/ellite/Wallos/main/images/siteicons/blue/walloswhite.png"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="wallos" /></a> <a href="https://github.com/ellite/Wallos"> Wallos </a></h2>
-
-<p>Wallos is a powerful, open-source, and self-hostable web application designed to empower you in managing your finances with ease. Say goodbye to complicated spreadsheets and expensive financial software. Wallos simplifies the process of tracking expenses and helps you gain better control over your financial life.</p>
-
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/wallos/docker-compose.yaml)**
-
-<br>
-
 <h2><a href="https://raw.githubusercontent.com/Flomp/wanderer/main/web/static/svgs/logo_text_two_line_dark.svg"><img
             src="https://raw.githubusercontent.com/Flomp/wanderer/main/web/static/svgs/logo_text_two_line_dark.svg"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
