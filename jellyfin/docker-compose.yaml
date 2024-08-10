@@ -9,8 +9,6 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - JELLYFIN_PublishedServerUrl=jellyfin.local.willkimble.net #optional
-    group_add:
-      - "105" # "render" host group id
     volumes:
       - ./data/config:/config
       - /mnt/synology-nas/Files/data/media/tv:/data/tvshows
@@ -19,9 +17,10 @@ services:
       - /mnt/synology-nas/Files/data/media/youtube:/data/youtube
     ports:
       - 8096:8096
+    group_add:
+      - "105" # This is the "render" host group id
     devices:
       - /dev/dri:/dev/dri
-      - /dev/dri/renderD128:/dev/dri/renderD128
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true

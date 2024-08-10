@@ -311,7 +311,7 @@ services:
       - ./data/cross-seed/config:/config
       - ./data/qbittorrent/qBittorrent/BT_backup:/torrents:ro
       - ./data/cross-seed/output:/cross-seeds
-    command: daemon # search or daemon
+    command: search # search or daemon
     restart: unless-stopped
 #################################################################
   qbit_manage:
