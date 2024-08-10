@@ -1,4 +1,3 @@
----
 services:
 #################################################################
   qbittorrent-gluetun:
@@ -44,7 +43,6 @@ services:
       ### Gluetun ###
       - "traefik.http.routers.gluetun.entrypoints=http"
       - "traefik.http.routers.gluetun.rule=Host(`gluetun.local.willkimble.net`)"
-      - "traefik.http.middlewares.gluetun-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.gluetun.middlewares=gluetun-https-redirect"
       - "traefik.http.routers.gluetun-secure.entrypoints=https"
       - "traefik.http.routers.gluetun-secure.rule=Host(`gluetun.local.willkimble.net`)"
@@ -54,28 +52,33 @@ services:
       ### qBittorrent ###
       - "traefik.http.routers.qbittorrent.entrypoints=http"
       - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.local.willkimble.net`)"
-      - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
       - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
       - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.local.willkimble.net`)"
       - "traefik.http.routers.qbittorrent-secure.tls=true"
       - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      ### Autobrr ###
+      - "traefik.http.routers.autobrr.entrypoints=http"
+      - "traefik.http.routers.autobrr.rule=Host(`autobrr.local.willkimble.net`)"
+      - "traefik.http.routers.autobrr.middlewares=autobrr-https-redirect"
+      - "traefik.http.routers.autobrr-secure.entrypoints=https"
+      - "traefik.http.routers.autobrr-secure.rule=Host(`autobrr.local.willkimble.net`)"
+      - "traefik.http.routers.autobrr-secure.tls=true"
+      - "traefik.http.routers.autobrr-secure.service=autobrr"
+      - "traefik.http.services.autobrr.loadbalancer.server.port=7474"
       ### Prowlarr ###
       - "traefik.http.routers.prowlarr.entrypoints=http"
       - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.local.willkimble.net`)"
-      - "traefik.http.middlewares.prowlarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.prowlarr.middlewares=prowlarr-https-redirect"
       - "traefik.http.routers.prowlarr-secure.entrypoints=https"
       - "traefik.http.routers.prowlarr-secure.rule=Host(`prowlarr.local.willkimble.net`)"
       - "traefik.http.routers.prowlarr-secure.tls=true"
       - "traefik.http.routers.prowlarr-secure.service=prowlarr"
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
-      - "traefik.http.routers.prowlarr-secure-middlewares=authelia@docker"
       ### Sonarr ###
       - "traefik.http.routers.sonarr.entrypoints=http"
       - "traefik.http.routers.sonarr.rule=Host(`television.local.willkimble.net`)"
-      - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
       - "traefik.http.routers.sonarr-secure.entrypoints=https"
       - "traefik.http.routers.sonarr-secure.rule=Host(`television.local.willkimble.net`)"
@@ -85,7 +88,6 @@ services:
       ### Radarr ###
       - "traefik.http.routers.radarr.entrypoints=http"
       - "traefik.http.routers.radarr.rule=Host(`movies.local.willkimble.net`)"
-      - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
       - "traefik.http.routers.radarr-secure.entrypoints=https"
       - "traefik.http.routers.radarr-secure.rule=Host(`movies.local.willkimble.net`)"
@@ -95,7 +97,6 @@ services:
       ### Bazarr ###
       - "traefik.http.routers.bazarr.entrypoints=http"
       - "traefik.http.routers.bazarr.rule=Host(`bazarr.local.willkimble.net`)"
-      - "traefik.http.middlewares.bazarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.bazarr.middlewares=bazarr-https-redirect"
       - "traefik.http.routers.bazarr-secure.entrypoints=https"
       - "traefik.http.routers.bazarr-secure.rule=Host(`bazarr.local.willkimble.net`)"
@@ -148,14 +149,30 @@ services:
       - VPN_GATEWAY=
       - VPN_CT_NAME=gluetun
       - VPN_IF_NAME=tun0
-      - CHECK_INTERVAL=300
-      - NAT_LEASE_LIFETIME=300
+      - CHECK_INTERVAL=200
+      - NAT_LEASE_LIFETIME=200
     env_file:
       - .env
     network_mode: "service:qbittorrent-gluetun"
     depends_on:
       qbittorrent:
         condition: service_started
+      qbittorrent-gluetun:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+#################################################################
+  autobrr:
+    container_name: autobrr
+    image: ghcr.io/autobrr/autobrr:latest
+    restart: unless-stopped
+    environment:
+      - TZ=Etc/UTC
+    user: 1000:1000
+    volumes:
+      - ./data/autobrr/config:/config
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
       qbittorrent-gluetun:
         condition: service_healthy
     security_opt:

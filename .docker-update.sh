@@ -11,7 +11,7 @@ run_update_in_folder() {
 
         # Update the directory docker container
         echo -e "Updating \033[0;35m$folder\033[0m"
-        docker-compose down && docker-compose pull && docker-compose up --force-recreate --build -d && docker image prune -f
+        docker compose down && docker compose pull && docker compose up --force-recreate --build -d && docker image prune -f
 
         # Wait for the command to finish
         wait
@@ -27,7 +27,7 @@ run_update_in_folder() {
 # Check if any arguments are passed
 if [ "$#" -eq 0 ]; then
     # Update the curr folder docker container
-    docker-compose down && docker-compose pull && docker-compose up --force-recreate --build -d && docker image prune -f
+    docker compose down && docker compose pull && docker compose up --force-recreate --build -d && docker image prune -f
 elif [ "$#" -eq 1 ] && [ "$1" == "all" ]; then
     # Loop through every folder in /home/will/docker if "all" is passed as the sole argument
     for folder in /home/will/docker/*; do

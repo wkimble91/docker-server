@@ -1,8 +1,7 @@
-version: '3'
 services:
 #################################################################
   traefik:
-    image: traefik:latest
+    image: traefik:v3.0
     container_name: traefik
     restart: unless-stopped
     security_opt:
@@ -13,7 +12,6 @@ services:
     ports:
       - 80:80
       - 443:443
-      #- 853:853
     environment:
       CF_DNS_API_TOKEN: ${CF_API_KEY}
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
@@ -23,8 +21,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./data/traefik.yml:/traefik.yml:ro
-      - ./data/acme.json:/acme.json
       - ./data/config.yml:/config.yml:ro
+      - ./data/acme.json:/acme.json
       #- traefik-logs:/var/log/traefik
     labels:
       - "traefik.enable=true"
@@ -42,7 +40,7 @@ services:
       - "traefik.http.routers.traefik-secure.tls.domains[0].main=local.willkimble.net"
       - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.local.willkimble.net"
       - "traefik.http.routers.traefik-secure.service=api@internal"
-      - "traefik.http.routers.traefik-secure.middlewares=authelia@docker"
+#      - "traefik.http.routers.traefik-secure.middlewares=authelia@docker"
 #################################################################
 networks:
   proxy:
