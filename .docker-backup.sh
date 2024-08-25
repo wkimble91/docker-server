@@ -26,7 +26,7 @@ perform_backup() {
 
     # Step 4: Copy everything (including dot files) from /home/will to the server folder
     echo -e "\033[0;32mCopying all contents from HOME to SERVER_1...\033[0m"
-    sudo cp -r "$HOME_DIR/." "$SERVER_1/"
+    sudo find "$HOME_DIR" -mindepth 1 -maxdepth 1 -path "$HOME_DIR/.cache" -prune -o -exec cp -r {} "$SERVER_1/" \;
     echo "Done"
     sleep 2
 

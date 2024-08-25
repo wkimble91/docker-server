@@ -1,8 +1,15 @@
 services:
 #################################################################
+  restarter:
+    image: docker:cli
+    container_name: qbittorrent-restarter
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+    command: ["/bin/sh", "-c", "while true; do sleep 604800; cd /home/will/docker/qbittorrent; docker compose up -d --force-recreate; done"]
+    restart: unless-stopped
+#################################################################
   qbittorrent-gluetun:
     #image: ghcr.io/qdm12/gluetun:v3.34 #Working
-    image: ghcr.io/qdm12/gluetun:v3.34
+    image: ghcr.io/qdm12/gluetun:v3.39
     container_name: gluetun
     restart: unless-stopped
     cap_add:
@@ -24,14 +31,16 @@ services:
       - TZ=Etc/UTC
       - UPDATER_PERIOD=
       - UPDATER_VPN_SERVICE_PROVIDERS=
+#      - VPN_PORT_FORWARDING=on
+#      - VPN_PORT_FORWARDING_PROVIDER=protonvpn
     env_file:
       - .env
     expose:
+      - 8000/tcp # Gluetun        
       - 8080/tcp # qBittorrent
       - 9696/tcp # Prowlarr
       - 8019 # Seedcross
-      - 8000/tcp # Homepage Widget
-      - 8191 #Flaresolverr
+      - 8191 # Flaresolverr
     security_opt:
       - no-new-privileges:true
     networks:
