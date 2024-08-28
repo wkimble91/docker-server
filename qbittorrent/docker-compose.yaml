@@ -4,7 +4,8 @@ services:
     image: docker:cli
     container_name: qbittorrent-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
-    command: ["/bin/sh", "-c", "while true; do sleep 604800; cd /home/will/docker/qbittorrent; docker compose up -d --force-recreate; done"]
+#    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; done"] #Testing
+    command: ["/bin/sh", "-c", "while true; do sleep 604800; docker restart gluetun qbittorrent qbittorrent-natmap; done"]
     restart: unless-stopped
 #################################################################
   qbittorrent-gluetun:
