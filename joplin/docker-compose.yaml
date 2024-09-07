@@ -37,7 +37,7 @@ services:
       - .env
     restart: unless-stopped
     volumes:
-      - /mnt/synology-nas/Files/personal/documents/Joplin:/notes
+      - /mnt/unraid-nas/personal/documents/Joplin:/notes
     security_opt:
       - no-new-privileges:true
     networks:

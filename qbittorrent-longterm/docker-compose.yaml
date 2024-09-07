@@ -61,18 +61,20 @@ services:
     restart: unless-stopped
     volumes:
       - ./data/qbittorrent:/config
-      - /mnt/synology-nas/Files/data/torrents:/data/torrents
-      - /mnt/synology-nas/Files/data/media/elearning:/elearning           #E-learning
-      - /mnt/synology-nas/Files/data/media/games/switch:/switch           #Games - Switch
-      - /mnt/synology-nas/Files/data/media/games/pc:/pc                   #Games - PC
-      - /mnt/synology-nas/Files/data/media/games/vr:/vr                   #Games - VR
-      - /mnt/synology-nas/Files/data/torrents/music:/music                #Music
-      - /mnt/synology-nas/Files/data/media/books/ebooks:/ebooks           #eBooks
-      - /mnt/synology-nas/Files/data/media/books/audiobooks:/audiobooks   #Audiobooks
-      - /mnt/synology-nas/Files/data/torrents/longterm:/longterm          #Long Term/Temp 
+      - /mnt/unraid-nas/data/torrents:/data/torrents
+      - /mnt/unraid-nas/data/media/elearning:/elearning           #E-learning
+      - /mnt/unraid-nas/data/media/games/switch:/switch           #Games - Switch
+      - /mnt/unraid-nas/data/media/games/pc:/pc                   #Games - PC
+      - /mnt/unraid-nas/data/media/games/vr:/vr                   #Games - VR
+      - /mnt/unraid-nas/data/torrents/music:/music                #Music
+      - /mnt/unraid-nas/data/media/books/ebooks:/ebooks           #eBooks
+      - /mnt/unraid-nas/data/media/books/audiobooks:/audiobooks   #Audiobooks
+      - /mnt/unraid-nas/data/torrents/longterm:/longterm          #Long Term/Temp 
     environment:
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
+      - PUID=1000
+      - PGID=1000
     network_mode: "service:qbittorrent_lt-gluetun"
     depends_on:
       qbittorrent_lt-gluetun:

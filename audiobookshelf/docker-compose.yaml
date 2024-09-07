@@ -12,9 +12,9 @@ services:
     volumes:
       - ./data/metadata:/metadata
       - ./data/config:/config
-      - /mnt/synology-nas/Files/data/media/books/audiobooks:/audiobooks
-      - /mnt/synology-nas/Files/data/media/books/ebooks:/ebooks
-      - /mnt/synology-nas/Files/data/media/podcasts:/podcasts
+      - /mnt/unraid-nas/data/media/books/audiobooks:/audiobooks
+      - /mnt/unraid-nas/data/media/books/ebooks:/ebooks
+      - /mnt/unraid-nas/data/media/podcasts:/podcasts
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true

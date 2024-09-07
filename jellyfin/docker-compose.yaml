@@ -11,10 +11,10 @@ services:
       - JELLYFIN_PublishedServerUrl=jellyfin.local.willkimble.net #optional
     volumes:
       - ./data/config:/config
-      - /mnt/synology-nas/Files/data/media/tv:/data/tvshows
-      - /mnt/synology-nas/Files/data/media/movies:/data/movies
-      - /mnt/synology-nas/Files/data/media/commentary:/data/commentary
-      - /mnt/synology-nas/Files/data/media/youtube:/data/youtube
+      - /mnt/unraid-nas/data/media/tv:/data/tv
+      - /mnt/unraid-nas/data/media/movies:/data/movies
+      - /mnt/unraid-nas/data/media/commentary:/data/commentary
+      - /mnt/unraid-nas/data/media/youtube:/data/youtube
     ports:
       - 8096:8096
     group_add:

@@ -10,7 +10,7 @@ services:
       - ./data/images:/app/public/images
       - ./data/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/synology-nas/Files:/mnt/nas:ro
+      - /mnt/unraid-nas:/mnt/nas:ro
     networks:
       - proxy
       - adguard_dns_net

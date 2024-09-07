@@ -50,9 +50,9 @@ services:
       retries: 5
     volumes:
       - ./data/paperless/data:/usr/src/paperless/data # Docker container data
-      - /mnt/synology-nas/Files/personal/documents/Paperless/Media:/usr/src/paperless/media # Location of your documents
-      - /mnt/synology-nas/Files/personal/documents/Paperless/Backups:/usr/src/paperless/export # Target for backups
-      - /mnt/synology-nas/Files/personal/documents/Paperless/Watch-Folder:/usr/src/paperless/consume # Watch folder
+      - /mnt/unraid-nas/personal/documents/Paperless/Media:/usr/src/paperless/media # Location of your documents
+      - /mnt/unraid-nas/personal/documents/Paperless/Backups:/usr/src/paperless/export # Target for backups
+      - /mnt/unraid-nas/personal/documents/Paperless/Watch-Folder:/usr/src/paperless/consume # Watch folder
     env_file: .env
     environment:
       PAPERLESS_REDIS: redis://paperless-redis:6379

@@ -17,7 +17,7 @@ services:
       - .env
     volumes:
       - ./data:/data
-      - /mnt/synology-nas/Files/data/media/music:/music:ro
+      - /mnt/unraid-nas/data/media/music:/music:ro
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
