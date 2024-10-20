@@ -73,8 +73,8 @@ services:
     environment:
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
     network_mode: "service:qbittorrent_lt-gluetun"
     depends_on:
       qbittorrent_lt-gluetun:

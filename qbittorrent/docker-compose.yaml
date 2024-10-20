@@ -4,8 +4,8 @@ services:
     image: docker:cli
     container_name: qbittorrent-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
-#    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; done"] #Testing
-    command: ["/bin/sh", "-c", "while true; do sleep 604800; docker restart gluetun qbittorrent qbittorrent-natmap; done"]
+#    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"] #Testing
+    command: ["/bin/sh", "-c", "while true; do sleep 172800; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"]
     restart: unless-stopped
 #################################################################
   qbittorrent-gluetun:
@@ -134,8 +134,8 @@ services:
     environment:
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
     network_mode: "service:qbittorrent-gluetun"
     depends_on:
       qbittorrent-gluetun:
@@ -180,7 +180,9 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Etc/UTC
-    user: 1000:1000
+      - PUID=99
+      - PGID=100
+    user: 99:100
     volumes:
       - ./data/autobrr/config:/config
     network_mode: "service:qbittorrent-gluetun"
@@ -194,8 +196,8 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
     volumes:
       - ./data/prowlarr:/config
@@ -220,8 +222,8 @@ services:
       qbittorrent-gluetun:
         condition: service_healthy
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -241,8 +243,8 @@ services:
       qbittorrent-gluetun:
         condition: service_healthy
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -262,8 +264,8 @@ services:
       qbittorrent-gluetun:
         condition: service_healthy
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -280,11 +282,11 @@ services:
     depends_on:
       qbittorrent-gluetun:
         condition: service_healthy
-    user: 1000:1000
+    user: 99:100
     environment:
       - TZ=Etc/UTC
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./data/recyclarr:/config
@@ -312,8 +314,8 @@ services:
     image: crossseed/cross-seed
     container_name: cross-seed
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
     network_mode: "service:qbittorrent-gluetun"
     depends_on:

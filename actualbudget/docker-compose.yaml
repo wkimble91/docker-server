@@ -2,7 +2,7 @@ services:
 #################################################################
   actual_server:
     container_name: actualbudget
-    image: actualbudget/actual-server:latest
+    image: actualbudget/actual-server:edge #edge adds NA Banks support
       # This line makes Actual available at port 5006 of the device you run the server on,
     volumes:
       - ./data:/data

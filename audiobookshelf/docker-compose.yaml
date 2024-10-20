@@ -6,8 +6,8 @@ services:
     environment:
       - AUDIOBOOKSHELF_UID=99
       - AUDIOBOOKSHELF_GID=100
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=America/Chicago
     volumes:
       - ./data/metadata:/metadata

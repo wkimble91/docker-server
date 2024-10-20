@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the paths
-SERVER_2="/mnt/synology-nas/Files/personal/backups/server-home-2"
-SERVER_1="/mnt/synology-nas/Files/personal/backups/server-home-1"
+SERVER_2="/mnt/unraid-nas/personal/backups/server-home-2"
+SERVER_1="/mnt/unraid-nas/personal/backups/server-home-1"
 HOME_DIR="/home/will"
 
 perform_backup() {
@@ -38,9 +38,9 @@ perform_backup() {
 
     # Step 6: Restarting all Docker containers
     echo -e "\033[0;36mRestarting all Docker containers...\033[0m"
-    sudo docker restart $(sudo docker ps -a -q) > /dev/null
+    /home/will/docker/.docker-update.sh all
+    #sudo docker restart $(sudo docker ps -a -q) > /dev/null
     echo "Done"
-
     echo "Backup process completed successfully."
 }
 

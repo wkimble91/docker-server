@@ -5,8 +5,8 @@ services:
     #image: lscr.io/linuxserver/jellyfin:10.8.10-1-ls220 #works for YT image extraction
     container_name: jellyfin
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=99
+      - PGID=100
       - TZ=Etc/UTC
       - JELLYFIN_PublishedServerUrl=jellyfin.local.willkimble.net #optional
     volumes:
