@@ -5,7 +5,7 @@ services:
     container_name: qbittorrent-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
 #    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"] #Testing
-    command: ["/bin/sh", "-c", "while true; do sleep 172800; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"]
+    command: ["/bin/sh", "-c", "while true; do sleep 604800; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"]
     restart: unless-stopped
 #################################################################
   qbittorrent-gluetun:
@@ -116,21 +116,23 @@ services:
 #################################################################
   qbittorrent:
     # https://docs.linuxserver.io/images/docker-qbittorrent
-    image: linuxserver/qbittorrent:4.6.0
+    # image: linuxserver/qbittorrent:4.6.0
+    image: linuxserver/qbittorrent:5.0.1-libtorrentv1
     container_name: qbittorrent
     restart: unless-stopped
     volumes:
       - ./data/qbittorrent:/config
       - ./data/cross-seed/output:/cross-seed
       - /mnt/unraid-nas/data/torrents:/data/torrents
-      - /mnt/unraid-nas/data/media/elearning:/elearning           #E-learning
-      - /mnt/unraid-nas/data/media/games/switch:/switch           #Games - Switch
-      - /mnt/unraid-nas/data/media/games/pc:/pc                   #Games - PC
-      - /mnt/unraid-nas/data/media/games/vr:/vr                   #Games - VR
-      - /mnt/unraid-nas/data/torrents/music:/music                #Music
-      - /mnt/unraid-nas/data/media/books/ebooks:/ebooks           #eBooks
-      - /mnt/unraid-nas/data/media/books/audiobooks:/audiobooks   #Audiobooks
-      - /mnt/unraid-nas/data/torrents/longterm:/longterm          #Long Term/Temp 
+      - /mnt/unraid-nas/data/media/elearning:/elearning           # E-learning
+      - /mnt/unraid-nas/data/media/games/switch:/switch           # Games - Switch
+      - /mnt/unraid-nas/data/media/games/pc:/pc                   # Games - PC
+      - /mnt/unraid-nas/data/media/games/vr:/vr                   # Games - VR
+      - /mnt/unraid-nas/data/torrents/music:/music                # Music
+      - /mnt/unraid-nas/data/media/books/ebooks:/ebooks           # eBooks
+      - /mnt/unraid-nas/data/media/books/audiobooks:/audiobooks   # Audiobooks
+      - /mnt/unraid-nas/data/media/podcasts:/podcasts             # Podcasts
+      - /mnt/unraid-nas/data/torrents/longterm:/longterm          # Long Term/Temp 
     environment:
       - TZ=Etc/UTC
       - WEBUI_PORT=8080

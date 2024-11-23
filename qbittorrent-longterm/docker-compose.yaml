@@ -4,12 +4,12 @@ services:
     image: docker:cli
     container_name: qbittorrent_lt-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
-    command: ["/bin/sh", "-c", "while true; do sleep 172800; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"]
+    command: ["/bin/sh", "-c", "while true; do sleep 86400; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"]
 #    command: ["/bin/sh", "-c", "while true; do sleep 60; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"] #For testing
     restart: unless-stopped
 #################################################################
   qbittorrent_lt-gluetun:
-    #image: ghcr.io/qdm12/gluetun:v3.34 #Working
+    #image: ghcr.io/qdm12/gluetun:v3.32 #Working
     image: ghcr.io/qdm12/gluetun:v3.39
     container_name: gluetun_lt
     restart: unless-stopped
@@ -56,7 +56,7 @@ services:
 #################################################################
   qbittorrent_lt:
     # https://docs.linuxserver.io/images/docker-qbittorrent
-    image: linuxserver/qbittorrent:4.6.0
+    image: linuxserver/qbittorrent:5.0.1-libtorrentv1
     container_name: qbittorrent_lt
     restart: unless-stopped
     volumes:

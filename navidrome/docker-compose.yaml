@@ -3,7 +3,7 @@ services:
   navidrome:
     container_name: navidrome
     image: deluan/navidrome:latest
-    user: 1000:1000 # should be owner of volumes
+    user: 99:100 # should be owner of volumes
     environment:
       # Optional: put your config options customization here. Examples:
       ND_SCANSCHEDULE: 1h
