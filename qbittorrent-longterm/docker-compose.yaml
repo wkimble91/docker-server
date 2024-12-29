@@ -1,7 +1,8 @@
 services:
 #################################################################
   restarter:
-    image: docker:cli
+#    image: docker:cli
+    image: docker:20.10-cli #Temp fix
     container_name: qbittorrent_lt-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
     command: ["/bin/sh", "-c", "while true; do sleep 86400; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"]

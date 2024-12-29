@@ -1,11 +1,33 @@
 services:
 #################################################################
   restarter:
-    image: docker:cli
+#    image: docker:cli
+    image: docker:20.10-cli #Temp fix
     container_name: qbittorrent-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
 #    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"] #Testing
     command: ["/bin/sh", "-c", "while true; do sleep 604800; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"]
+    restart: unless-stopped
+#################################################################
+  cross-seed:
+    image: crossseed/cross-seed
+    container_name: cross-seed
+    environment:
+      - PUID=99
+      - PGID=100
+      - TZ=Etc/UTC
+    network_mode: "service:qbittorrent-gluetun"
+    depends_on:
+      qbittorrent:
+        condition: service_started
+      prowlarr:
+        condition: service_started
+    volumes:
+      - ./data/cross-seed/config:/config
+      - ./data/qbittorrent/qBittorrent/BT_backup:/torrents:ro
+      - ./data/cross-seed/output:/cross-seeds
+#    command: search # search or daemon
+    command: daemon # search or daemon
     restart: unless-stopped
 #################################################################
   qbittorrent-gluetun:
@@ -311,26 +333,6 @@ services:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true
-#################################################################
-  cross-seed:
-    image: crossseed/cross-seed
-    container_name: cross-seed
-    environment:
-      - PUID=99
-      - PGID=100
-      - TZ=Etc/UTC
-    network_mode: "service:qbittorrent-gluetun"
-    depends_on:
-      qbittorrent:
-        condition: service_started
-      prowlarr:
-        condition: service_started
-    volumes:
-      - ./data/cross-seed/config:/config
-      - ./data/qbittorrent/qBittorrent/BT_backup:/torrents:ro
-      - ./data/cross-seed/output:/cross-seeds
-    command: daemon # search or daemon
-    restart: unless-stopped
 #################################################################
   qbit_manage:
     container_name: qbit_manage
