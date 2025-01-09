@@ -39,6 +39,7 @@ services:
       - "traefik.http.services.bookstack.loadbalancer.server.port=80"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.bookstack-secure-middlewares=authelia@docker"
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   mariadb:
     image: lscr.io/linuxserver/mariadb:latest
@@ -58,6 +59,8 @@ services:
     expose:
       - 3306
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
 networks:
   default:

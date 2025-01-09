@@ -1,13 +1,14 @@
 services:
 #################################################################
   restarter:
-#    image: docker:cli
-    image: docker:20.10-cli #Temp fix
+    image: docker:cli
+#    image: docker:20.10-cli #Temp fix
     container_name: qbittorrent-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
-#    command: ["/bin/sh", "-c", "while true; do sleep 20; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"] #Testing
     command: ["/bin/sh", "-c", "while true; do sleep 604800; docker restart gluetun qbittorrent qbittorrent-natmap; docker restart prowlarr radarr sonarr autobrr bazarr flaresolverr cross-seed qbit_manage; done"]
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   cross-seed:
     image: crossseed/cross-seed
@@ -29,6 +30,8 @@ services:
 #    command: search # search or daemon
     command: daemon # search or daemon
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   qbittorrent-gluetun:
     #image: ghcr.io/qdm12/gluetun:v3.34 #Working
@@ -215,6 +218,8 @@ services:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -232,6 +237,8 @@ services:
     depends_on:
       qbittorrent-gluetun:
         condition: service_healthy
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   radarr:
     container_name: radarr
@@ -253,6 +260,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data/radarr:/config
       - /mnt/unraid-nas/data:/data
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   sonarr:
     container_name: sonarr
@@ -274,6 +283,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data/sonarr:/config
       - /mnt/unraid-nas/data:/data
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   bazarr:
     container_name: bazarr
@@ -295,6 +306,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data/bazarr:/config
       - /mnt/unraid-nas/data/media:/data/media
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   recyclarr:
     container_name: recyclarr
@@ -314,6 +327,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./data/recyclarr:/config
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   flaresolverr:
     # DockerHub mirror flaresolverr/flaresolverr:latest
@@ -333,6 +348,8 @@ services:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   qbit_manage:
     container_name: qbit_manage
@@ -367,6 +384,8 @@ services:
       qbittorrent:
         condition: service_started
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
 networks:
   proxy:

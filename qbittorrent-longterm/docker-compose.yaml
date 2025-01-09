@@ -1,13 +1,14 @@
 services:
 #################################################################
   restarter:
-#    image: docker:cli
-    image: docker:20.10-cli #Temp fix
+    image: docker:cli
+#    image: docker:20.10-cli #Temp fix
     container_name: qbittorrent_lt-restarter
     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
     command: ["/bin/sh", "-c", "while true; do sleep 86400; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"]
-#    command: ["/bin/sh", "-c", "while true; do sleep 60; docker restart gluetun_lt qbittorrent_lt qbittorrent_lt-natmap; done"] #For testing
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 #################################################################
   qbittorrent_lt-gluetun:
     #image: ghcr.io/qdm12/gluetun:v3.32 #Working

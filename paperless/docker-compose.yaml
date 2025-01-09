@@ -76,7 +76,7 @@ services:
       - "traefik.http.routers.paperless-secure.service=paperless"
       - "traefik.http.services.paperless.loadbalancer.server.port=8000"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.paperless-secure.middlewares=authelia@docker"
+#      - "traefik.http.routers.paperless-secure.middlewares=authelia@docker"
 #################################################################
 networks:
   proxy:
