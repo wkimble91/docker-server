@@ -4,7 +4,7 @@
 The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-update.sh) I use to update multiple docker folders at once or default to current folder.
 
 <br>
-<h2><a href="https://avatars.githubusercontent.com/u/37879538"><img src="https://avatars.githubusercontent.com/u/37879538"
+<h2><a href="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/actual-budget.webp"><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/actual-budget.webp"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto; border-radius: 50%;"
             title="ActualBudget" /></a> <a href="https://github.com/actualbudget/actual"> Actualbudget </a></h2>
 
@@ -14,23 +14,18 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 
 <br>
 
-<h2><a href="https://avatars.githubusercontent.com/u/8361145?s=200&v=4"><img
-            src="https://avatars.githubusercontent.com/u/8361145?s=200&v=4"
+<h2><a href="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/adguard-home.webp"><img
+            src="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/adguard-home.webp"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="Pihole" /></a><a href="https://github.com/AdguardTeam/AdGuardHome"> Adguard Home </a> | <a
-        href="https://nlnetlabs.nl/static/logos/Unbound/Mark_Unbound_FC_Shaded.svg"><img
-            src="https://nlnetlabs.nl/static/logos/Unbound/Mark_Unbound_FC_Shaded.svg"
+            title="Adguard Home" /></a><a href="https://github.com/AdguardTeam/AdGuardHome"> Adguard Home </a> | <a
+        href="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/unbound.webp"><img
+            src="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/unbound.webp"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: 40px; border-radius: 50%;"
-            title="Unbound" /></a><a href="https://github.com/NLnetLabs/unbound"> Unbound  </a> | <a
-        href="https://avatars.githubusercontent.com/u/105704026?s=200&v=4"><img
-            src="https://avatars.githubusercontent.com/u/105704026?s=200&v=4"
-            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
-            title="wireguard" /></a> <a href="https://github.com/wg-easy/wg-easy"> WG-Easy </a></h2>
+            title="Unbound" /></a><a href="https://github.com/NLnetLabs/unbound"> Unbound  </a></h2>
 
 <p>Adguard Home is a DNS sinkhole that protects your devices from unwanted content without installing any client-side
     software.</p>
 <p>Unbound is a validating, recursive, caching DNS resolver.</p>
-<p>WG-Easy is an extremely simple yet fast and modern Wireguard VPN clinet that utilizes state-of-the-art cryptography in an easy to use GUI.</p>
 
 **[dockerfile](https://github.com/wkimble91/docker-server/blob/main/adguard/docker-compose.yaml)**
 
@@ -44,7 +39,7 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 
 <p>Never forget an adventure with AdventureLog - Your ultimate travel companion!</p>
 
-**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/AdventureLog/docker-compose.yaml)**
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/adventurelog/docker-compose.yaml)**
 
 <br>
 
