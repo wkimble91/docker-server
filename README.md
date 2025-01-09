@@ -203,8 +203,8 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 
 <br>
 
-<h2><a href="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tandoorrecipes.png"><img
-            src="https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tandoorrecipes.png"
+<h2><a href="https://avatars.githubusercontent.com/u/86065214"><img
+            src="https://avatars.githubusercontent.com/u/86065214"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
             title="Tandoor" /></a> <a href="https://github.com/TandoorRecipes/recipes"> Tandoor </a></h2>
 
