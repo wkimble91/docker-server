@@ -38,6 +38,16 @@ The [bash script](https://github.com/wkimble91/docker-server/blob/main/.docker-u
 
 <br>
 
+<h2><a href="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/adventurelog.webp"><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/webp/adventurelog.webp"
+            style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
+            title="AdventureLog" /></a> <a href="https://github.com/seanmorley15/AdventureLog"> AdventureLog </a></h2>
+
+<p>Never forget an adventure with AdventureLog - Your ultimate travel companion!</p>
+
+**[dockerfile](https://github.com/wkimble91/docker-server/blob/main/AdventureLog/docker-compose.yaml)**
+
+<br>
+
 <h2><a href="https://www.audiobookshelf.org/Logo.png"><img src="https://www.audiobookshelf.org/Logo.png"
             style="width: 40px; margin-bottom: -10px; margin-right: 5px; max-width: 100%;  height: auto;"
             title="Audiobookshelf" /></a> <a href="https://github.com/advplyr/audiobookshelf"> Audiobookshelf </a></h2>
