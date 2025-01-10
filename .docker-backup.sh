@@ -8,7 +8,7 @@ HOME_DIR="/home/will"
 perform_backup() {
     # Step 1: Delete everything (including dot files) in the server-old folder
     echo -e "\033[0;31mDeleting contents in SERVER_2...\033[0m"
-    sudo find "$SERVER_2" -mindepth 1 -delete
+    sudo find "$SERVER_2" -mindepth 1 -exec rm -rf {} +
     echo "Done"
     sleep 2
 
